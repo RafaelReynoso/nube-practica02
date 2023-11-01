@@ -19,4 +19,4 @@ def registrarUsuarios(request):
     email = request.POST['txtEmail']
 
     usuarios = Usuarios.objects.create(codigo = codigo, nombre = nombre, telefono = telefono, email = email)
-    return redirect('/')
+    return redirect('usuarios/')
