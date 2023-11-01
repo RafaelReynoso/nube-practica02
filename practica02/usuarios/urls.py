@@ -6,5 +6,7 @@ router = routers.DefaultRouter()
 router.register(r'usuarios', views.UsuariosView,'usuarios')
 
 urlpatterns = [
+    path('', views.home),
+    path('registrarUsuarios/', views.registrarUsuarios),
     path('api/v1/', include(router.urls))
 ]

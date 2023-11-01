@@ -1,0 +1,70 @@
+{% extends "./base.html" %}
+
+{% block title %} Gestión de Usuarios {% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0">Agregar Usuario</h2>
+                </div>
+                <div class="card-body">
+                    <form action="/registrarUsuarios/" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="txtCodigo">Código:</label>
+                            <input type="text" id="txtCodigo" name="txtCodigo" class="form-control" maxlength="6" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtNombre">Nombre:</label>
+                            <input type="text" id="txtNombre" name="txtNombre" class="form-control" maxlength="50" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="numTelefono">Telefono:</label>
+                            <input type="text" id="numTelefono" name="numTelefono" class="form-control" maxlength="50" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtEmail">Email:</label>
+                            <input type="text" id="txtEmail" name="txtEmail" class="form-control" maxlength="50" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2 class="mb-3">Lista de Usuarios</h2>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Telefono</th>
+                            <th>Email</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for u in usuarios %}
+                        <tr>
+                            <td>{{ u.codigo }}</td>
+                            <td>{{ u.nombre }}</td>
+                            <td>{{ u.telefono }}</td>
+                            <td>{{ u.email }}</td>
+                            <td>
+                                <a href="eliminacionUsuarios/{{ u.usuarios }}" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
